@@ -35,7 +35,6 @@ async function predict() {
   if (!model) {
     console.log("Model not loaded yet!");
     return;
-  }
 
   // Get image from webcam and preprocess
   const img = tf.browser.fromPixels(webcamElement)
