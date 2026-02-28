@@ -34,7 +34,8 @@ init();
 async function predict() {
   if (!model) {
     console.log("Model not loaded yet!");
-    return;
+    return;  // <-- just return if model not ready
+  }
 
   // Get image from webcam and preprocess
   const img = tf.browser.fromPixels(webcamElement)
@@ -59,8 +60,12 @@ async function predict() {
   document.getElementById("prediction").innerText =
     `Prediction: ${predictedClass} (${probability}%)`;
 
-  prediction.dispose(); // frees memory
-  img.dispose();        // also free the input tensor
+  // Optional: print tensor to console
+  prediction.print();
+
+  // Clean up memory
+  prediction.dispose();
+  img.dispose();
 }
 
   const prediction = model.predict(img);
