@@ -1,0 +1,1 @@
+{"tfjsVersion":"1.7.4","tmVersion":"2.4.12","packageVersion":"0.8.4-alpha2","packageName":"@teachablemachine/image","timeStamp":"2026-02-28T17:49:27.438Z","userMetadata":{},"modelName":"tm-my-image-model","labels":["covering face","thumbs up","straight face","laughing","hand"],"imageSize":224}
