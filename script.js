@@ -18,8 +18,8 @@ async function setupWebcam() {
 async function loadModel() {
   model = await tf.loadLayersModel('tfjs_model/model.json');
   console.log("Model loaded!");
-  
-  // Enable the button
+
+  // Enable the button now
   document.getElementById("predict-btn").disabled = false;
 }
 
@@ -32,10 +32,37 @@ async function init() {
 init();
 
 async function predict() {
+  if (!model) {
+    console.log("Model not loaded yet!");
+    return;
+  }
+
+  // Get image from webcam and preprocess
   const img = tf.browser.fromPixels(webcamElement)
-    .resizeNearestNeighbor([224, 224]) // adjust to your model input size
+    .resizeNearestNeighbor([224, 224]) // match your model input size
     .toFloat()
+    .div(255) // normalize 0-1
     .expandDims();
+
+  // Run prediction
+  const prediction = model.predict(img);
+
+  // Convert tensor to array
+  const predArray = prediction.arraySync()[0];
+
+  // Map prediction to class names (update with your classes)
+  const classNames = ["Class A", "Class B", "Class C"];
+  const predictedIndex = predArray.indexOf(Math.max(...predArray));
+  const predictedClass = classNames[predictedIndex];
+  const probability = (predArray[predictedIndex] * 100).toFixed(1);
+
+  // Show prediction on the page
+  document.getElementById("prediction").innerText =
+    `Prediction: ${predictedClass} (${probability}%)`;
+
+  prediction.dispose(); // frees memory
+  img.dispose();        // also free the input tensor
+}
 
   const prediction = model.predict(img);
   prediction.print();
