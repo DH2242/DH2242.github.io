@@ -51,7 +51,7 @@ async function predict() {
   const predArray = prediction.arraySync()[0];
 
   // Map prediction to class names (replace with your actual classes)
-  const classNames = ["hand over face", "thumbs", "straight face", "smiling", "hand"];
+  const classNames = ["hand over face", "thumbs", "straight face", "hand"];
   const predictedIndex = predArray.indexOf(Math.max(...predArray));
   const predictedClass = classNames[predictedIndex];
   const probability = (predArray[predictedIndex] * 100).toFixed(1);
