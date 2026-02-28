@@ -82,7 +82,10 @@
 
   /* Pose images */
   #pose-row img {
-    display: inline-block; /* now all images are always visible */
+    display: inline-block;       /* keep all images visible */
+    width: 50px;                 /* adjust width */
+    height: 50px;                /* adjust height */
+    object-fit: contain;         /* keep aspect ratio */
     transition: transform 0.3s;
   }
 
