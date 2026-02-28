@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TensorFlow.js Model Demo</title>
+  <title>TensorFlow.js Pose Demo</title>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0"></script>
 
-  <!-- CSS for styling -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -58,22 +57,52 @@
       color: #222;
     }
 
+    /* Emoji / image row at bottom */
+    #emoji-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    #emoji-row img {
+      width: 60px;
+      height: 60px;
+      opacity: 0.5;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    #emoji-row img.active {
+      opacity: 1;
+      transform: scale(1.3);
+      border: 2px solid #4CAF50;
+      border-radius: 10px;
+    }
+
     footer {
-      margin-top: 40px;
       font-size: 14px;
       color: #666;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 
 <body>
-  <h1>TensorFlow.js Model Demo</h1>
+  <h1>TensorFlow.js Pose Demo</h1>
 
   <video id="webcam" autoplay playsinline></video>
   <br>
   <button id="predict-btn" onclick="predict()" disabled>Run Prediction</button>
 
   <p id="prediction">Prediction will appear here</p>
+
+  <!-- Emoji / pose row -->
+  <div id="emoji-row">
+    <img src="emoji/smile.png" alt="Smile" id="emoji-Smile">
+    <img src="emoji/sad.png" alt="Sad" id="emoji-Sad">
+    <img src="emoji/surprised.png" alt="Surprised" id="emoji-Surprised">
+  </div>
 
   <footer>
     Powered by TensorFlow.js | Your Name
