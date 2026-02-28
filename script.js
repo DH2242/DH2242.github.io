@@ -18,6 +18,9 @@ async function setupWebcam() {
 async function loadModel() {
   model = await tf.loadLayersModel('tfjs_model/model.json');
   console.log("Model loaded!");
+  
+  // Enable the button
+  document.getElementById("predict-btn").disabled = false;
 }
 
 async function init() {
