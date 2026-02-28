@@ -34,7 +34,7 @@ init();
 async function predict() {
   if (!model) {
     console.log("Model not loaded yet!");
-    return;  // <-- just return if model not ready
+    return; // exit if model isn't ready
   }
 
   // Get image from webcam and preprocess
@@ -50,7 +50,7 @@ async function predict() {
   // Convert tensor to array
   const predArray = prediction.arraySync()[0];
 
-  // Map prediction to class names (update with your classes)
+  // Map prediction to class names (replace with your actual classes)
   const classNames = ["Class A", "Class B", "Class C"];
   const predictedIndex = predArray.indexOf(Math.max(...predArray));
   const predictedClass = classNames[predictedIndex];
@@ -60,14 +60,10 @@ async function predict() {
   document.getElementById("prediction").innerText =
     `Prediction: ${predictedClass} (${probability}%)`;
 
-  // Optional: print tensor to console
+  // Optional: print tensor to console for debugging
   prediction.print();
 
-  // Clean up memory
+  // Dispose tensors to free memory
   prediction.dispose();
   img.dispose();
-}
-
-  const prediction = model.predict(img);
-  prediction.print();
 }
